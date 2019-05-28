@@ -74,7 +74,7 @@ public void setUp(){
 
         Thread.sleep(1000);
         webDriver.findElement(By.cssSelector("#s2-styler > div.jq-selectbox__dropdown > ul > li:nth-child(36)")).click();
-
+        Thread.sleep(10000);
         webDriver.quit();
 
 
