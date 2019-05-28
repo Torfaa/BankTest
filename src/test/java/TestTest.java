@@ -112,21 +112,21 @@ public class TestTest {
     }
 
     @Step("Проверка на пустое поле")
-    public static void checkIsNotNullFieldsTest2(String xpath) {
-        Assert.assertNotNull(webDriver.findElement(By.xpath(xpath)).getText(), "Поле пустое");
+    public static void checkIsNotNullFieldsTest2(String FieldXpath) {
+        Assert.assertNotNull(webDriver.findElement(By.xpath(FieldXpath)).getText(), "Поле пустое");
 
     }
 
     @Step("Проверка, выбран ли чекбокс")
-    public static void checkСheckboxSelect(String cssSelector) {
-        Assert.assertEquals(webDriver.findElement(By.cssSelector(cssSelector)).getAttribute("checked"),null,"Чекбокс выбран");
+    public static void checkСheckboxSelect(String CheckboxCssSelector) {
+        Assert.assertEquals(webDriver.findElement(By.cssSelector(CheckboxCssSelector)).getAttribute("checked"),null,"Чекбокс выбран");
 
 
     }
 
     @Step("Проверка, выпадающий список не пустой")
-    public static void checkDropList(String cssSelector) {
-        Assert.assertEquals(webDriver.findElement(By.cssSelector(cssSelector)).getAttribute("changed"),null,"Выпадающий список выбран");
+    public static void checkDropList(String DroplistCssSelector) {
+        Assert.assertEquals(webDriver.findElement(By.cssSelector(DroplistCssSelector)).getAttribute("changed"),null,"Выпадающий список выбран");
 
 
     }
