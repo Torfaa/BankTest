@@ -111,7 +111,7 @@ public class TestTest {
         Assert.assertEquals(currentUrl, expectedUrl, "URL не соответствует ожидаемому");
     }
 
-    @Step("Проверка на пустое поле")
+    @Step("Проверка, пустое ли поле")
     public static void checkIsNotNullFieldsTest2(String FieldXpath) {
         Assert.assertNotNull(webDriver.findElement(By.xpath(FieldXpath)).getText(), "Поле пустое");
 
