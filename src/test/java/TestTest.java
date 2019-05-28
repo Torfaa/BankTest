@@ -5,63 +5,58 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 
+public class TestTest {
+    WebDriver webDriver;
 
-public class TestTest { WebDriver webDriver;
-
-@BeforeSuite
-public void setUp(){
-   System.setProperty("webdriver.chrome.driver","C:\\web\\chromedriver.exe");
-    webDriver = new ChromeDriver();
-
-
-}
+    @BeforeSuite
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "C:\\web\\chromedriver.exe");
+        webDriver = new ChromeDriver();
 
 
-     @Test
-    public void Test1 () throws InterruptedException {
-
-         webDriver.get("https://rencredit.ru/");
-         webDriver.findElement(By.xpath("//a[@href='https://rencredit.ru/contributions/#section_5']")).click();
-         JavascriptExecutor jse = (JavascriptExecutor)webDriver;
-         jse.executeScript("scroll(0, -250);");
-          Thread.sleep(5000);
-          WebElement webElem = webDriver.findElement((By.className("calculator__check-block-input")));
-              Actions action = new Actions(webDriver);
-              action.moveToElement(webElem).click().perform();
-
-          WebElement webElem2 = webDriver.findElement(By.className("calculator__slide-input-field"));
-          Actions action2 = new Actions(webDriver);
-             action2.moveToElement(webElem2).click().perform();
-             action2.moveToElement(webElem2).sendKeys("2000000").perform();
-
-         Thread.sleep(1000);
-
-         webDriver.findElement(By.xpath("//*[@id=\"period-styler\"]/div[1]/div[1]")).click();
-         WebElement dropbox =   webDriver.findElement(By.cssSelector("  #period-styler > div.jq-selectbox__dropdown > ul > li:nth-child(1)"));
-            Actions action3 = new Actions(webDriver);
-             action3.moveToElement(dropbox).click().perform();
-
-         Thread.sleep(1000);
-
-         webDriver.findElement(By.cssSelector("#section_2 > div > div.tabs.js-tabs > div.tabs-content > div:nth-child(1) > div.deposits-terms__info-doc-row > div > h3 > a")).click();
-
-         Thread.sleep(5000);
-
-         Actions keyAction = new Actions(webDriver);
-         keyAction.keyDown(Keys.CONTROL).sendKeys("s").keyUp(Keys.CONTROL).perform();
-         Thread.sleep(5000);
-
-
-
-
-
-         }
-
-
+    }
 
 
     @Test
-    public void Test2 () throws InterruptedException {
+    public void Test1() throws InterruptedException {
+
+        webDriver.get("https://rencredit.ru/");
+        webDriver.findElement(By.xpath("//a[@href='https://rencredit.ru/contributions/#section_5']")).click();
+        JavascriptExecutor jse = (JavascriptExecutor) webDriver;
+        jse.executeScript("scroll(0, -250);");
+        Thread.sleep(5000);
+        WebElement webElem = webDriver.findElement((By.className("calculator__check-block-input")));
+        Actions action = new Actions(webDriver);
+        action.moveToElement(webElem).click().perform();
+
+        WebElement webElem2 = webDriver.findElement(By.className("calculator__slide-input-field"));
+        Actions action2 = new Actions(webDriver);
+        action2.moveToElement(webElem2).click().perform();
+        action2.moveToElement(webElem2).sendKeys("2000000").perform();
+
+        Thread.sleep(1000);
+
+        webDriver.findElement(By.xpath("//*[@id=\"period-styler\"]/div[1]/div[1]")).click();
+        WebElement dropbox = webDriver.findElement(By.cssSelector("  #period-styler > div.jq-selectbox__dropdown > ul > li:nth-child(1)"));
+        Actions action3 = new Actions(webDriver);
+        action3.moveToElement(dropbox).click().perform();
+
+        Thread.sleep(1000);
+
+        webDriver.findElement(By.cssSelector("#section_2 > div > div.tabs.js-tabs > div.tabs-content > div:nth-child(1) > div.deposits-terms__info-doc-row > div > h3 > a")).click();
+
+        Thread.sleep(5000);
+
+        Actions keyAction = new Actions(webDriver);
+        keyAction.keyDown(Keys.CONTROL).sendKeys("s").keyUp(Keys.CONTROL).perform();
+        Thread.sleep(5000);
+
+
+    }
+
+
+    @Test
+    public void Test2() throws InterruptedException {
         Thread.sleep(1000);
         webDriver.get("https://rencredit.ru/");
         webDriver.findElement(By.xpath("/html/body/div[4]/div[1]/div[2]/div/div[2]/div[3]/div[1]/a[2]")).click();
@@ -76,13 +71,15 @@ public void setUp(){
 
         Thread.sleep(1000);
         webDriver.findElement(By.cssSelector("#s2-styler > div.jq-selectbox__dropdown > ul > li:nth-child(36)")).click();
+        webDriver.findElement(By.cssSelector("#s3-styler > div.jq-selectbox__select > div.jq-selectbox__select-text.placeholder")).click();
+        webDriver.findElement(By.cssSelector("#s3-styler > div.jq-selectbox__dropdown > ul > li:nth-child(4)")).click();
         Thread.sleep(10000);
         webDriver.quit();
 
 
     }
 
-     }
+}
 
 
 
