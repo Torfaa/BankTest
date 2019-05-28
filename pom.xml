@@ -15,8 +15,8 @@
         <aspectj.version>1.8.10</aspectj.version>
         <allure-testng.version>2.6.0</allure-testng.version>
            </properties>
-    <groupId>Pperegnyak</groupId>
-    <artifactId>BankTest</artifactId>
+    <groupId>pperegnyak</groupId>
+    <artifactId>banktest</artifactId>
     <version>1.0-SNAPSHOT</version>
 <dependencies>
 
