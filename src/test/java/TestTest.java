@@ -49,7 +49,7 @@ public void setUp(){
          Actions keyAction = new Actions(webDriver);
          keyAction.keyDown(Keys.CONTROL).sendKeys("s").keyUp(Keys.CONTROL).perform();
 
-         webDriver.quit();
+
 
 
 
@@ -75,7 +75,7 @@ public void setUp(){
         Thread.sleep(1000);
         webDriver.findElement(By.cssSelector("#s2-styler > div.jq-selectbox__dropdown > ul > li:nth-child(36)")).click();
 
-
+        webDriver.quit();
 
 
     }

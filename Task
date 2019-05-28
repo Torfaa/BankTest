@@ -57,21 +57,3 @@ https://github.com/allure-examples
 
 
 6) Сформировать отчет allure. Дать описание всем шагам и название тесту.
-
- //  webDriver.findElement(By.cssSelector("input[type 'checkbox')")).click();
-        // webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-      //  webDriver.findElement(By.cssSelector("td.content input[type='text']")).click();
-       //  String text = webDriver.findElement(By.xpath("//span[contains(@class, “js-showPhoneBlock”)]//span[@class=‘text’]")).getText();
-      // webDriver.findElement(By.xpath( "//input[@type='checkbox']" )).click();
-      //   webDriver.findElement(By.className("calculator_check-row")).findElement(By.className("calculator__check-row-field check-deposit")).findElement(By.xpath("//input")).click();
-        //    if( !webDriver.findElement(By.xpath("//div[@class=\"internet-bank\"]//div[@class=\"calculator__check-row-field check-deposit\"]//input")).isSelected())
-      //   webDriver.findElement(By.xpath("//div[@class=\"internet-bank\"]//div[@class=\"calculator__check-row-field check-deposit\"]//input")).click();
-        /* WebElement fancyboxClose = webDriver.findElement(By.xpath("//div[@class=\"internet-bank\"]//div[@class=\"calculator__check-row-field check-deposit\"]//input"));
-         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0," + fancyboxClose.getLocation().y + ")");
-         try {
-             fancyboxClose.click();
-         } catch (WebDriverException e) {
-
-         }
-
-*/
