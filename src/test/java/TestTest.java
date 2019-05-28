@@ -13,7 +13,7 @@ public class TestTest {
 
     @BeforeSuite
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\web\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Torf\\IdeaProjects\\BankTest\\chromedriver.exe");
         webDriver = new ChromeDriver();
 
 
