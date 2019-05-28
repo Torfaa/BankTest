@@ -22,7 +22,8 @@ public void setUp(){
 
          webDriver.get("https://rencredit.ru/");
          webDriver.findElement(By.xpath("//a[@href='https://rencredit.ru/contributions/#section_5']")).click();
-
+         JavascriptExecutor jse = (JavascriptExecutor)webDriver;
+         jse.executeScript("scroll(0, -250);");
           Thread.sleep(5000);
           WebElement webElem = webDriver.findElement((By.className("calculator__check-block-input")));
               Actions action = new Actions(webDriver);
@@ -48,6 +49,7 @@ public void setUp(){
 
          Actions keyAction = new Actions(webDriver);
          keyAction.keyDown(Keys.CONTROL).sendKeys("s").keyUp(Keys.CONTROL).perform();
+         Thread.sleep(5000);
 
 
 
@@ -60,7 +62,7 @@ public void setUp(){
 
     @Test
     public void Test2 () throws InterruptedException {
-
+        Thread.sleep(1000);
         webDriver.get("https://rencredit.ru/");
         webDriver.findElement(By.xpath("/html/body/div[4]/div[1]/div[2]/div/div[2]/div[3]/div[1]/a[2]")).click();
         webDriver.findElement(By.xpath("//*[@id=\"t1\"]")).sendKeys("Перегняк");
