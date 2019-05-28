@@ -1,12 +1,14 @@
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 
 public class TestTest {
-    WebDriver webDriver;
+    static   WebDriver webDriver;
 
     @BeforeSuite
     public void setUp() {
@@ -21,9 +23,10 @@ public class TestTest {
     public void Test1() throws InterruptedException {
 
         webDriver.get("https://rencredit.ru/");
-        webDriver.findElement(By.xpath("//a[@href='https://rencredit.ru/contributions/#section_5']")).click();
-        JavascriptExecutor jse = (JavascriptExecutor) webDriver;
-        jse.executeScript("scroll(0, -250);");
+
+        webDriver.findElement(By.xpath("/html/body/div[4]/div[1]/div[2]/div/div[2]/div[2]/div[1]/a[1]")).click();
+        String cuuret = webDriver.getCurrentUrl();
+        checkRedirectByURL("https://rencredit.ru/contributions/",cuuret);
         Thread.sleep(5000);
         WebElement webElem = webDriver.findElement((By.className("calculator__check-block-input")));
         Actions action = new Actions(webDriver);
@@ -77,6 +80,11 @@ public class TestTest {
         webDriver.quit();
 
 
+    }
+    @Step("Проверка осуществления перехода на URL='{https://rencredit.ru/contributions/}'.")
+    public static void checkRedirectByURL(String expectedUrl, String currentUrl){
+
+        Assert.assertEquals(currentUrl,expectedUrl,"URL не соответствует ожидаемому" );
     }
 
 }
