@@ -8,7 +8,8 @@ import org.testng.annotations.Test;
 
 
 public class TestTest {
-    static   WebDriver webDriver;
+    static WebDriver webDriver;
+    static String cuuret;
 
     @BeforeSuite
     public void setUp() {
@@ -25,9 +26,9 @@ public class TestTest {
         webDriver.get("https://rencredit.ru/");
 
         webDriver.findElement(By.xpath("/html/body/div[4]/div[1]/div[2]/div/div[2]/div[2]/div[1]/a[1]")).click();
-        String cuuret = webDriver.getCurrentUrl();
-        checkRedirectByURL("https://rencredit.ru/contributions/",cuuret);
-        Thread.sleep(5000);
+        cuuret = webDriver.getCurrentUrl();
+        checkRedirectByURL("https://rencredit.ru/contributions/", cuuret);
+        Thread.sleep(4000);
         WebElement webElem = webDriver.findElement((By.className("calculator__check-block-input")));
         Actions action = new Actions(webDriver);
         action.moveToElement(webElem).click().perform();
@@ -48,11 +49,12 @@ public class TestTest {
 
         webDriver.findElement(By.cssSelector("#section_2 > div > div.tabs.js-tabs > div.tabs-content > div:nth-child(1) > div.deposits-terms__info-doc-row > div > h3 > a")).click();
 
-        Thread.sleep(5000);
+        Thread.sleep(4000);
+
 
         Actions keyAction = new Actions(webDriver);
         keyAction.keyDown(Keys.CONTROL).sendKeys("s").keyUp(Keys.CONTROL).perform();
-        Thread.sleep(5000);
+        Thread.sleep(4000);
 
 
     }
@@ -63,29 +65,72 @@ public class TestTest {
         Thread.sleep(1000);
         webDriver.get("https://rencredit.ru/");
         webDriver.findElement(By.xpath("/html/body/div[4]/div[1]/div[2]/div/div[2]/div[3]/div[1]/a[2]")).click();
+
+        cuuret = webDriver.getCurrentUrl();
+        checkRedirectByURLTest2("https://rencredit.ru/app/card/cc_full", cuuret);
+
         webDriver.findElement(By.xpath("//*[@id=\"t1\"]")).sendKeys("Перегняк");
+        checkIsNotNullFieldsTest2("//*[@id=\"t1\"]");
+
         webDriver.findElement(By.xpath("//*[@id=\"t2\"]")).sendKeys("Павел");
+        checkIsNotNullFieldsTest2("//*[@id=\"t2\"]");
+
         webDriver.findElement(By.cssSelector("#section_1 > div.order-form-block__content > div > form > div:nth-child(1) > div:nth-child(4) > div > label > div")).click();
-        webDriver.findElement(By.cssSelector("#r1-styler")).click();
+        checkСheckboxSelect("#section_1 > div.order-form-block__content > div > form > div:nth-child(1) > div:nth-child(4) > div > label > div");
+
         webDriver.findElement(By.xpath("//*[@id=\"t38\"]")).sendKeys("test@mail.com");
+        checkIsNotNullFieldsTest2("//*[@id=\"t38\"]");
         Thread.sleep(1000);
         webDriver.findElement(By.xpath("//*[@id=\"t4\"]")).click();
         webDriver.findElement(By.xpath("//*[@id=\"t4\"]")).sendKeys("9233973301");
+        checkIsNotNullFieldsTest2("//*[@id=\"t4\"]");
+
 
         Thread.sleep(1000);
         webDriver.findElement(By.cssSelector("#s2-styler > div.jq-selectbox__dropdown > ul > li:nth-child(36)")).click();
         webDriver.findElement(By.cssSelector("#s3-styler > div.jq-selectbox__select > div.jq-selectbox__select-text.placeholder")).click();
         webDriver.findElement(By.cssSelector("#s3-styler > div.jq-selectbox__dropdown > ul > li:nth-child(4)")).click();
-        Thread.sleep(10000);
+        checkDropList("#s2-styler > div.jq-selectbox__dropdown > ul > li:nth-child(36)");
+        checkDropList("#s3-styler > div.jq-selectbox__dropdown > ul > li:nth-child(4)");
+        Thread.sleep(4000);
         webDriver.quit();
 
 
     }
-    @Step("Проверка осуществления перехода на URL='{https://rencredit.ru/contributions/}'.")
-    public static void checkRedirectByURL(String expectedUrl, String currentUrl){
 
-        Assert.assertEquals(currentUrl,expectedUrl,"URL не соответствует ожидаемому" );
+    @Step("Проверка осуществления перехода на URL='{https://rencredit.ru/contributions/}'.")
+    public static void checkRedirectByURL(String expectedUrl, String currentUrl) {
+
+        Assert.assertEquals(currentUrl, expectedUrl, "URL не соответствует ожидаемому");
     }
+
+
+    @Step("Проверка осуществления перехода на URL='{https://rencredit.ru/app/card/cc_full}'.")
+    public static void checkRedirectByURLTest2(String expectedUrl, String currentUrl) {
+
+        Assert.assertEquals(currentUrl, expectedUrl, "URL не соответствует ожидаемому");
+    }
+
+    @Step("Проверка на пустое поле")
+    public static void checkIsNotNullFieldsTest2(String xpath) {
+        Assert.assertNotNull(webDriver.findElement(By.xpath(xpath)).getText(), "Поле пустое");
+
+    }
+
+    @Step("Проверка, выбран ли чекбокс")
+    public static void checkСheckboxSelect(String cssSelector) {
+        Assert.assertEquals(webDriver.findElement(By.cssSelector(cssSelector)).getAttribute("checked"),null,"Чекбокс выбран");
+
+
+    }
+
+    @Step("Проверка, выпадающий список не пустой")
+    public static void checkDropList(String cssSelector) {
+        Assert.assertEquals(webDriver.findElement(By.cssSelector(cssSelector)).getAttribute("changed"),null,"Выпадающий список выбран");
+
+
+    }
+
 
 }
 
