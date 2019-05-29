@@ -49,7 +49,7 @@ public class TestTest {
         WebElement checkboxElement = webDriver.findElement(By.cssSelector(checkbox));
         Actions action = new Actions(webDriver);
         action.moveToElement(webElem).click().perform();
-        checkСheckboxSelect(checkboxElement);
+        checkCheckboxSelect(checkboxElement);
 
         WebElement webElem2 = webDriver.findElement(By.className("calculator__slide-input-field"));
         String amount = "2 000 000";
@@ -108,7 +108,7 @@ public class TestTest {
             String checkbox = "#section_1 > div.order-form-block__content > div > form > div:nth-child(1) > div:nth-child(4) > div > label > div";
             WebElement checkboxElement = webDriver.findElement(By.cssSelector(checkbox));
             checkboxElement.click();
-            checkСheckboxSelect(checkboxElement);
+            checkCheckboxSelect(checkboxElement);
 
             String email = "//*[@id=\"t38\"]";
             WebElement emailElement = webDriver.findElement(By.xpath(email));
@@ -156,7 +156,7 @@ public class TestTest {
     }
 
     @Step("Выбран ли чекбокс")
-    public static void checkСheckboxSelect(WebElement checkboxCssSelector) {
+    public static void checkCheckboxSelect(WebElement checkboxCssSelector) {
         Assert.assertTrue(checkboxCssSelector.getAttribute("class").contains("checked"), "Чекбокс не выбран");
     }
 
