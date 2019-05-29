@@ -165,14 +165,12 @@ public class TestTest {
     @Step("В выпадающем списке выбрана {myoption}")
     public static void checkDropList(String myoption, String namelist, String expected) {
 
-        Assert.assertEquals(myoption, expected, "В списке выбрана" + namelist);
+        Assert.assertEquals(myoption, expected, "В списке выбран элемент " + namelist);
     }
 
     public static void downloadFile() {
 
-        //We find the download links
         List<WebElement> list = webDriver.findElements(By.cssSelector("#section_2 > div > div.tabs.js-tabs > div.tabs-content > div:nth-child(1) > div.deposits-terms__info-doc-row > div > h3 > a"));
-//Click the last one to downaload 5MB file :)
         WebElement el = list.get(list.size() - 1);
         el.click();
 
@@ -183,12 +181,9 @@ public class TestTest {
     public static void CheckFile(String nameFile) {
 
         File folder = new File(System.getProperty("user.dir"));
-//List the files on that folder
         File[] listOfFiles = folder.listFiles();
         boolean found = false;
         File f = null;
-        //Look for the file in the files
-        // You should write smart REGEX according to the filename
         for (File listOfFile : listOfFiles) {
             if (listOfFile.isFile()) {
                 String fileName = listOfFile.getName();
