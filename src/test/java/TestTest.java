@@ -8,8 +8,14 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 
 public class TestTest {
@@ -18,7 +24,10 @@ public class TestTest {
 
     @BeforeSuite
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+
+        File file = searchFile(System.getProperty("user.dir"), "chromedriver.exe");
+        System.out.println(file.toString());
+        System.setProperty("webdriver.chrome.driver", file.toString());
         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
@@ -124,7 +133,6 @@ public class TestTest {
             phoneElement.sendKeys("9233973301");
             checkStringEquals("Телефон", expectedPhone, phoneElement.getAttribute("value"));
 
-
             Thread.sleep(1000);
             String obl = "#s2-styler > div.jq-selectbox__dropdown > ul > li:nth-child(36)";
             String fieldObl = webDriver.findElement(By.cssSelector("#s2 > option:nth-child(36)")).getText();
@@ -134,13 +142,10 @@ public class TestTest {
             webDriver.findElement(By.cssSelector("#s3-styler > div.jq-selectbox__dropdown > ul > li:nth-child(4)")).click();
             checkDropList(fieldObl, "Область", expectedObl);
 
-
             Thread.sleep(2000);
         } finally {
             webDriver.quit();
         }
-
-
     }
 
 
@@ -152,14 +157,15 @@ public class TestTest {
 
     @Step("Пустое ли поле {fieldName}")
     public static void checkStringEquals(String fieldName, String expected, String actual) {
+
         Assert.assertEquals(actual, expected, "Поле пустое:" + fieldName);
     }
 
     @Step("Выбран ли чекбокс")
     public static void checkCheckboxSelect(WebElement checkboxCssSelector) {
+
         Assert.assertTrue(checkboxCssSelector.getAttribute("class").contains("checked"), "Чекбокс не выбран");
     }
-
 
     @Step("В выпадающем списке выбрана {myoption}")
     public static void checkDropList(String myoption, String namelist, String expected) {
@@ -168,17 +174,13 @@ public class TestTest {
     }
 
     public static void downloadFile() {
-
         List<WebElement> list = webDriver.findElements(By.cssSelector("#section_2 > div > div.tabs.js-tabs > div.tabs-content > div:nth-child(1) > div.deposits-terms__info-doc-row > div > h3 > a"));
         WebElement el = list.get(list.size() - 1);
         el.click();
-
-
     }
 
     @Step("Проверка наличия файла {nameFile}")
     public static void CheckFile(String nameFile) {
-
         File folder = new File(System.getProperty("user.dir"));
         File[] listOfFiles = folder.listFiles();
         boolean found = false;
@@ -195,6 +197,22 @@ public class TestTest {
         Assert.assertTrue(found, "Downloaded document is not found");
         f.deleteOnExit();
     }
+
+
+    public static File searchFile(final String rootFolder, final String fileName) {
+        File target = null;
+        Path root = Paths.get(rootFolder);
+        try (Stream<Path> stream = Files.find(root, Integer.MAX_VALUE, (path, attr) ->
+                path.getFileName().toString().equals(fileName))) {
+            Optional<Path> path = stream.findFirst();
+            if (path.isPresent()) {
+                target = path.get().toFile();
+            }
+        } catch (IOException e) {
+        }
+        return target;
+    }
+
 
 }
 
