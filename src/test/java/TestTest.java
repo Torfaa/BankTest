@@ -42,7 +42,6 @@ public class TestTest {
         webDriver.findElement(By.xpath("/html/body/div[4]/div[1]/div[2]/div/div[2]/div[2]/div[1]/a[1]")).click();
         current = webDriver.getCurrentUrl();
         checkRedirectByURL(expectedUrl, current);
-        current = webDriver.getCurrentUrl();
         Thread.sleep(2000);
 
         WebElement webElem = webDriver.findElement((By.className("calculator__check-block-input")));
