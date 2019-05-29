@@ -18,7 +18,7 @@ public class TestTest {
 
     @BeforeSuite
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Torf\\IdeaProjects\\BankTest\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
@@ -71,7 +71,7 @@ public class TestTest {
         String fieldTerm = webDriver.findElement(By.cssSelector("#period-styler > div.jq-selectbox__select > div.jq-selectbox__select-text")).getText();
         checkDropList(fieldTerm, "Срок", expectedObl);
         downloadFile();
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         String nameFile = "obshchie-usloviya-po-vkladam-i-schetam_02.04.2018.pdf";
         CheckFile(nameFile);
         Thread.sleep(2000);
