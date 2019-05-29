@@ -72,7 +72,7 @@ public class TestTest {
         checkDropList(fieldTerm, "Срок", expectedObl);
         downloadFile();
         Thread.sleep(3000);
-       String nameFile = "obshchie-usloviya-po-vkladam-i-schetam_02.04.2018.pdf";
+        String nameFile = "obshchie-usloviya-po-vkladam-i-schetam_02.04.2018.pdf";
         CheckFile(nameFile);
         Thread.sleep(2000);
 
