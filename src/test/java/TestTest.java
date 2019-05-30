@@ -26,8 +26,8 @@ public class TestTest {
     public void setUp() {
 
         File file = searchFile(System.getProperty("user.dir"), "chromedriver.exe");
-        System.out.println(file.toString());
         System.setProperty("webdriver.chrome.driver", file.toString());
+
         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
@@ -35,8 +35,8 @@ public class TestTest {
         chromePrefs.put("plugins.always_open_pdf_externally", true);
         options.setExperimentalOption("prefs", chromePrefs);
         chromePrefs.put("pdfjs.disabled", true);
-        webDriver = new ChromeDriver(options);
 
+        webDriver = new ChromeDriver(options);
 
     }
 
@@ -84,7 +84,6 @@ public class TestTest {
         CheckFile(nameFile);
         Thread.sleep(2000);
 
-
     }
 
     @Epic(value = "Ренессанс Кредит")
@@ -93,7 +92,6 @@ public class TestTest {
     @Test
     public void Test2() throws InterruptedException {
         try {
-
 
             Thread.sleep(1000);
             webDriver.get("https://rencredit.ru/");
@@ -148,7 +146,6 @@ public class TestTest {
         }
     }
 
-
     @Step("переход на URL {currentUrl}")
     public static void checkRedirectByURL(String expectedUrl, String currentUrl) {
 
@@ -167,7 +164,7 @@ public class TestTest {
         Assert.assertTrue(checkboxCssSelector.getAttribute("class").contains("checked"), "Чекбокс не выбран");
     }
 
-    @Step("В выпадающем списке выбрана {myoption}")
+    @Step("В выпадающем списке выбран элемент {myoption}")
     public static void checkDropList(String myoption, String namelist, String expected) {
 
         Assert.assertEquals(myoption, expected, "В списке выбран элемент " + namelist);
@@ -194,10 +191,9 @@ public class TestTest {
                 }
             }
         }
-        Assert.assertTrue(found, "Downloaded document is not found");
+        Assert.assertTrue(found, "документ не найден");
         f.deleteOnExit();
     }
-
 
     public static File searchFile(final String rootFolder, final String fileName) {
         File target = null;
@@ -212,8 +208,6 @@ public class TestTest {
         }
         return target;
     }
-
-
 }
 
 
